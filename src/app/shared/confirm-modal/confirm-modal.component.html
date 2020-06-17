@@ -1,0 +1,48 @@
+<div class="modal-header" *ngIf="titleText !== '' && titleText?.length > 0">
+  <h4 class="modal-title" translate>{{titleText}}</h4>
+  <!-- <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button> -->
+  <mat-icon class="close-modal" (click)="close()">close</mat-icon>
+</div>
+<div class="modal-body">
+  <div>
+    <p *ngIf="mainText?.length > 0" translate>{{mainText}}</p>
+  </div>
+
+  <div class="row" *ngIf="showAction">
+    <div class="col-7">
+      <button class="delete-contact" mat-fab color="primary" aria-label="Example icon button with a delete icon"
+        matTooltip="Delete Contact" (click)="deleteContact()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <div class="col-5">
+      <button mat-fab color="primary" aria-label="Example icon button with a delete icon"
+        matTooltip="View Contact Details" (click)="editContact()">
+        <mat-icon>account_box</mat-icon>
+      </button>
+    </div>
+  </div>
+
+</div>
+<div class="modal-footer"  *ngIf="!showAction">
+  <button mat-raised-button class="btn-danger" (click)="close()">
+    <span translate>No</span>
+  </button>
+  <button mat-raised-button class="btn-success" (click)="confirm()">
+    <span translate>Yes</span>
+  </button>
+</div>
+<div class="modal-footer row" *ngIf="showAction">
+  <div class="col">
+    <mat-label class="delete-contact-label">
+      Delete Contact
+    </mat-label>
+  </div>
+  <div class="col">
+    <mat-label>
+      Edit Contact Details
+    </mat-label>
+  </div>
+</div>

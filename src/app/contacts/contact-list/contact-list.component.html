@@ -1,0 +1,107 @@
+
+<div class="content">
+
+  <div class="header">
+    <form class="filter" [formGroup]="inputForm">
+    <div class="row">
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <div class="header-icon">
+                <!-- <mat-icon class="header-icon-style"> {{headingIcon}}</mat-icon> -->
+                <span translate>{{heading}}</span>
+            </div>
+          </div>
+          <div class="col-sm-3 col-md-3 col-lg-3">
+                <!-- DATE RANGE -->
+                <mat-form-field>
+                  <input matInput
+                      placeholder="Choose a date"
+                      [satDatepicker]="picker"
+                      [value]="date"
+                      [max]="maxDate"
+                      name="dateRange"
+                      formControlName="dateRange">
+                  <sat-datepicker #picker [rangeMode]="true"></sat-datepicker>
+                  <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
+                </mat-form-field>
+          </div>
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <!-- SEARCH -->
+
+              <div class="list-search-container">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Search</mat-label>
+                  <input type="search" name="searchCriteria" formControlName="searchCriteria" matInput placeholder="Name, Surname, Tel">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+              </div>
+
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2 pull-right">
+            <button mat-raised-button class="btn-success" (click)="addContact()">
+              <span translate>Add Contact</span>
+            </button>
+          </div>
+          <div class="col-sm-2 col-md-2 col-lg-2 csv-import">
+            <input type="file" class="csv-import-button" (change)="convertFile($event)" accept=".csv"/>
+          </div>
+      </div>
+    </form>
+  </div>
+
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+  <div class="class mat-elevation-z8 pointer">
+    <mat-table [dataSource]="contacts" matSort (matSortChange)="sortData($event)" matSortActive="FirstName" matSortStart="asc" matSortDisableClear>
+
+      <ng-container matColumnDef="checked">
+        <mat-header-cell *matHeaderCellDef>Check</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox [(ngModel)]="row.checked"></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="FirstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> FirstName </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.firstName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Surname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Surname </mat-header-cell>
+        <mat-cell class="death" *matCellDef="let row"> {{row['Total Cases_text']}}
+          <span class="increasedStats"> {{row.surname}} </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Telephone Number">
+        <mat-header-cell *matHeaderCellDef> Telephone Number </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tel}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="CellPhone Number">
+        <mat-header-cell *matHeaderCellDef> CellPhone Number </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.cell}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Email Address">
+        <mat-header-cell *matHeaderCellDef> Email Address </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Updated Date">
+        <mat-header-cell *matHeaderCellDef> Updated Date </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.updatedDate | date: 'dd-MM-yyyy hh:mm a'}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="actionNavigation(row)">
+        </mat-row>
+      </mat-table>
+
+      <mat-paginator [length]="totalPages"
+        [pageSize]="currentPageSize"
+        [pageSizeOptions]="pageSizes"
+        (page)="pageEvent($event)">
+      </mat-paginator>
+    </div>
+
+</div>

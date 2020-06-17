@@ -1,0 +1,62 @@
+<div class="modal-header" *ngIf="titleText !== '' && titleText?.length > 0">
+  <h4 class="modal-title" translate>{{titleText}}</h4>
+
+  <mat-icon class="close-modal" (click)="close()">close</mat-icon>
+</div>
+<div class="modal-body">
+
+  <div class="class mat-elevation-z8">
+    <mat-table [dataSource]="contactList">
+
+      <ng-container matColumnDef="FirstName">
+        <mat-header-cell *matHeaderCellDef> FirstName </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.FirstName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Surname">
+        <mat-header-cell *matHeaderCellDef> Surname </mat-header-cell>
+        <mat-cell class="death" *matCellDef="let row"> {{row.Surname}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Telephone Number">
+        <mat-header-cell *matHeaderCellDef> Telephone </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Tel}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="CellPhone Number">
+        <mat-header-cell *matHeaderCellDef> CellPhone </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Cell}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Email Address">
+        <mat-header-cell *matHeaderCellDef> Email Address </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.Email}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Updated Date">
+        <mat-header-cell *matHeaderCellDef> Updated Date </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.UpdatedDate | date: 'dd-MM-yyyy hh:mm a'}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+      </mat-table>
+
+      <mat-paginator [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent($event)">
+      </mat-paginator>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button mat-raised-button class="btn-danger" (click)="close()">
+    <span translate>Cancel</span>
+  </button>
+  <button mat-raised-button class="btn-success" (click)="confirm()">
+    <span translate>Save</span>
+  </button>
+</div>
+

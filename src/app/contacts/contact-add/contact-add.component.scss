@@ -1,0 +1,108 @@
+.content {
+  margin-top: 15px;
+}
+
+.contact-card {
+  margin-top: 15px;
+
+
+}
+
+.contact-label {
+  margin-top: 10px;
+  text-rendering: optimizeLegibility;
+  font-size: 0.875rem;
+  font-weight: 500
+}
+.contact-values {
+  margin-top: 10px;
+  text-rendering: optimizeLegibility;
+  font-size: 0.875rem;
+}
+.contact-header {
+  background-color: #4eb9ec;
+  height: 65px;
+}
+
+.header-icon {
+  line-height: 65px;
+  font-size: 1.5rem;
+  margin-left: 4px;
+  font-weight: 400;
+}
+
+.account-image-container {
+  text-align: center;
+  .account-image {
+    width: 90px;
+    height: 90px;
+    background-position: 50%;
+    background-size: cover;
+    border-radius: 50%;
+    text-align: center;
+
+    cursor: pointer;
+    position: absolute;
+    right: 12.5%;
+    top: 31px;
+
+    border: 5px solid #fff;
+    background-color: #ef6c00;
+  }
+  .account-image-initials {
+    top: 13px;
+    position: relative;
+    font-size: 2.1rem;
+    color: #ffff;
+  }
+}
+
+.contact-name {
+  position: absolute;
+  color: #fff;
+  margin-top: 18px;
+  left: 38px;
+}
+
+// ::ng-deep .contact-card {
+//   width: 70%;
+// }
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.input-full-width {
+  width: 100%;
+}
+
+.tft-fileuploader {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.tft-fileuploader-label {
+  right: 5px;
+  height: 20px;
+  font-size: 1.25em;
+  width: 0.1px;
+  height: 0.1px;
+  font-weight: 700;
+
+  display: inline-block;
+  cursor: pointer;
+  padding-right: 0px;
+  font-size: 10px;
+  visibility: hidden;
+}
+
+.btn-success {
+  background-color: #28C76F;
+  margin-right: 10px
+}
+

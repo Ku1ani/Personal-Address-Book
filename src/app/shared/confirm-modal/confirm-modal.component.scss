@@ -1,0 +1,25 @@
+.btn-success {
+  background-color: #28C76F;
+  color: #fff;
+  margin-left: 5px;
+}
+
+.btn-danger {
+  background-color: #F55753;
+  color: #fff;
+}
+
+.close-modal {
+  cursor: pointer;
+}
+
+::ng-deep .modal-content {
+  width: 121% !important;
+}
+.delete-contact {
+  margin-left: 40px;
+}
+
+.delete-contact-label {
+  margin-left: 20px;
+}

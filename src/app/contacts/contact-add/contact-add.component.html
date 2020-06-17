@@ -1,0 +1,185 @@
+
+
+<!-- <mat-card class="content">
+
+</mat-card> -->
+
+<div class="header">
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <div class="header-icon">
+        <span translate *ngIf="contact.Id === 0">Add Contact List</span>
+        <span translate *ngIf="contact && contact.Id > 0">Edit Contact List</span>
+      </div>
+    </div>
+    <div class="col-sm-3 col-md-3 col-lg-3">
+
+    </div>
+    <div class="col-sm-3 col-md-3 col-lg-3">
+
+    </div>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-xl-4" *ngIf="contact && contact.Id > 0">
+    <mat-card class="contact-card">
+      <mat-card-header class="contact-header">
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+          <div class="account-image-container">
+            <input class="tft-fileuploader"
+            #accountImageUpload
+            type="file"
+            name="photo"
+            id="photo"
+            placeholder="Upload file" accept=".jpg, .jpeg, .png"/>
+            <div class="account-image">
+                <span class="account-image-initials" (click)="accountImageUpload.click()">
+                   {{contact.Initials}}
+                </span>
+            </div>
+          </div>
+          <span class="contact-name">{{contact.FirstName}} {{contact.Surname}}</span>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="contact-info pl-3 px-3">
+          <div class="row">
+            <div class="col-3 contact-label">Telephone: </div>
+            <div class="col-9 contact-values">{{contact.Tel}}</div>
+          </div>
+          <div class="row">
+            <div class="col-3 contact-label">Cell: </div>
+            <div class="col-9 contact-values">{{contact.Cell}}</div>
+          </div>
+          <div class="row">
+            <div class="col-3 contact-label">Email: </div>
+            <div class="col-9 contact-values">{{contact.Email}}</div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="col-sm-12 col-md-12 col-xl-8">
+    <mat-card class="content">
+      <form name="form" [formGroup]="inputForm" class="tft-form" novalidate>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="input-full-width">
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder="Jane" id="FirstName"
+              name="FirstName" formControlName="FirstName">
+              <mat-error *ngIf="inputForm.controls['FirstName'] && inputForm.controls['FirstName'].errors" align="start">
+                <span *ngIf="inputForm.controls['FirstName'].errors.required" translate>
+                  FirstName is <strong>required</strong>
+                </span>
+                <span *ngIf="inputForm.controls['FirstName'].errors.pattern" translate>
+                  Please enter a valid name
+                </span>
+                <span *ngIf="inputForm.controls['FirstName'].errors.maxlength" translate>
+                  FirstName is too long
+                </span>
+
+            </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="input-full-width">
+              <mat-label>Surname</mat-label>
+              <input matInput placeholder="Smith" id="Surname"
+                name="Surname" formControlName="Surname">
+                <mat-error *ngIf="inputForm.controls['Surname'] && inputForm.controls['Surname'].errors" align="start">
+                  <span *ngIf="inputForm.controls['Surname'].errors.required" translate>
+                    Surname is <strong>required</strong>
+                  </span>
+                  <span *ngIf="inputForm.controls['Surname'].errors.pattern" translate>
+                    Please enter a valid surname
+                  </span>
+                  <span *ngIf="inputForm.controls['Surname'].errors.maxlength" translate>
+                    Surname is too long
+                  </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="input-full-width">
+              <mat-label>Telephone</mat-label>
+              <input type="tel" matInput placeholder="011 312 1192" id="Tel"
+              name="Tel" formControlName="Tel" [maxlength]="10">
+              <mat-error *ngIf="inputForm.controls['Tel'] && inputForm.controls['Tel'].errors" align="start">
+                <span *ngIf="inputForm.controls['Tel'].errors.required" translate>
+                  Telephone number is <strong>required</strong>
+                </span>
+                <span *ngIf="inputForm.controls['Tel'].errors.pattern" translate>
+                  Please enter a valid telePhone number
+                </span>
+                <span *ngIf="inputForm.controls['Tel'].errors.minlength" translate>
+                  Telephone number is too short
+                </span>
+            </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="input-full-width">
+              <mat-label>Cell Phone</mat-label>
+              <input type="tel" matInput placeholder="084 598 0487" id="Cell"
+              name="Cell" formControlName="Cell" [maxlength]="10">
+              <mat-error *ngIf="inputForm.controls['Cell'] && inputForm.controls['Cell'].errors" align="start">
+                <span *ngIf="inputForm.controls['Cell'].errors.required" translate>
+                  Cellphone Number is <strong>required</strong>
+                </span>
+                <span *ngIf="inputForm.controls['Cell'].errors.pattern" translate>
+                  Please enter a valid cellphone number
+                </span>
+                <span *ngIf="inputForm.controls['Cell'].errors.minlength" translate>
+                  Cellphone number is too short
+                </span>
+            </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="input-full-width">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Johndoe@gmail.com" id="Email"
+              name="Email" formControlName="Email">
+              <mat-error *ngIf="inputForm.controls['Email'] && inputForm.controls['Email'].errors" align="start">
+                <span *ngIf="inputForm.controls['Email'].errors.pattern" translate>
+                  Please enter a valid email address
+                </span>
+                <span *ngIf="inputForm.controls['Email'].errors.required" translate>
+                  Email is <strong>required</strong>
+                </span>
+                <span *ngIf="inputForm.controls['Email'].errors.maxlength" translate>
+                  Email is too long
+                </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+  </form>
+
+    <button mat-raised-button class="btn-success" (click)="submit()">
+      <span translate>Save</span>
+    </button>
+
+    <button mat-raised-button (click)="cancel()">
+      <span translate>Cancel</span>
+    </button>
+    </mat-card>
+  </div>
+</div>
+
+
+
+
+
